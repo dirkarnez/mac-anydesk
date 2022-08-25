@@ -14,4 +14,4 @@ jobs:
         run: cd /Volumes/AnyDesk && ls && sudo cp -rf /Volumes/AnyDesk/AnyDesk.app /Applications
         
       - name: run
-        run: sudo /Applications/AnyDesk.app/Contents/MacOS/AnyDesk --get-alias  --get-id
+        run: sudo /Applications/AnyDesk.app/Contents/MacOS/AnyDesk --get-id
