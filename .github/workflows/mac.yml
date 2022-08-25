@@ -7,8 +7,11 @@ jobs:
   xcode:
     runs-on: macos-11
     steps:
-      - name: install
-        run: aria2c https://download.anydesk.com/anydesk.dmg && hdiutil attach anydesk.dmg && cd /Volumes && ls # run: sudo installer -pkg AnyDesk.pkg -target /
+      - name: download and mount
+        run: aria2c https://download.anydesk.com/anydesk.dmg && hdiutil attach anydesk.dmg
         
-      # - name: run
-      #  run: echo 123456 | sudo /Applications/AnyDesk.app/Contents/MacOS/AnyDesk --set-password
+      - name: install
+        run: cd /Volumes/AnyDesk && sudo cp -rf /Volumes/AnyDesk.app /Applications
+        
+      - name: run
+        run: echo 123456 | sudo /Applications/AnyDesk.app/Contents/MacOS/AnyDesk --set-password
