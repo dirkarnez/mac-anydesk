@@ -11,7 +11,7 @@ jobs:
         run: aria2c https://download.anydesk.com/anydesk.dmg && hdiutil attach anydesk.dmg
         
       - name: install
-        run: cd /Volumes/AnyDesk && ls && sudo cp -rf /Volumes/AnyDesk.app /Applications
+        run: cd /Volumes/AnyDesk && ls && sudo cp -rf /Volumes/AnyDesk/AnyDesk.app /Applications
         
       - name: run
         run: echo 123456 | sudo /Applications/AnyDesk.app/Contents/MacOS/AnyDesk --set-password
