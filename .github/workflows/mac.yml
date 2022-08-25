@@ -5,7 +5,7 @@ on: [push]
 #       - 'v*' # Push events to matching v*, i.e. v1.0, v20.15.10
 jobs:
   xcode:
-    runs-on: macos-11
+    runs-on: macos-latest
     steps:
       - name: download and mount
         run: aria2c https://download.anydesk.com/anydesk.dmg && hdiutil attach anydesk.dmg
@@ -14,4 +14,4 @@ jobs:
         run: cd /Volumes/AnyDesk && ls && sudo cp -rf /Volumes/AnyDesk/AnyDesk.app /Applications
         
       - name: run
-        run: sudo /Applications/AnyDesk.app/Contents/MacOS/AnyDesk
+        run: sudo /Applications/AnyDesk.app/Contents/MacOS/AnyDesk --get-alias  --get-id
