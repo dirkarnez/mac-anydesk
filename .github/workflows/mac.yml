@@ -1,0 +1,14 @@
+name: mac-actions-workflow
+on: [push]
+#     # Sequence of patterns matched against refs/tags
+#     tags:
+#       - 'v*' # Push events to matching v*, i.e. v1.0, v20.15.10
+jobs:
+  xcode:
+    runs-on: macos-11
+    steps:
+      - name: install
+        run: sudo installer -pkg AnyDesk.pkg -target /
+        
+      - name: run
+        run: echo 123456 | sudo /Applications/AnyDesk.app/Contents/MacOS/AnyDesk --set-password
