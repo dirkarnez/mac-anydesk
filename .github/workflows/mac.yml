@@ -14,4 +14,4 @@ jobs:
         run: cd /Volumes/AnyDesk && ls && sudo cp -rf /Volumes/AnyDesk/AnyDesk.app /Applications
         
       - name: run
-        run: sudo echo 123456 | sudo /Applications/AnyDesk.app/Contents/MacOS/AnyDesk --set-password
+        run: sudo /Applications/AnyDesk.app/Contents/MacOS/AnyDesk
