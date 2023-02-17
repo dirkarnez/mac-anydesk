@@ -7,14 +7,16 @@ jobs:
   xcode:
     runs-on: macos-latest
     steps:
-      - name: download and mount
-        run: aria2c https://google.com/dl/chrome-remote-desktop/chromeremotedesktophost-47.0.2526.18.dmg && hdiutil attach chromeremotedesktophost-47.0.2526.18.dmg
+      - run: brew install --cask chrome-remote-desktop-host
+      
+#       - name: download and mount
+#         run: aria2c https://google.com/dl/chrome-remote-desktop/chromeremotedesktophost-47.0.2526.18.dmg && hdiutil attach chromeremotedesktophost-47.0.2526.18.dmg
         
-      - name: install
-        run: cd "/Volumes/Chrome Remote Desktop Host 47.0.2526.18" && ls && sudo installer -pkg "Chrome Remote Desktop Host.pkg" -target /
+#       - name: install
+#         run: cd "/Volumes/Chrome Remote Desktop Host 47.0.2526.18" && ls && sudo installer -pkg "Chrome Remote Desktop Host.pkg" -target /
         
-#       - name: run
-#         run: screencapture ~/Desktop/picture.png # sudo /Applications/AnyDesk.app/Contents/MacOS/AnyDesk --get-id
+# #       - name: run
+# #         run: screencapture ~/Desktop/picture.png # sudo /Applications/AnyDesk.app/Contents/MacOS/AnyDesk --get-id
         
       - run: launchctl start org.chromium.chromoting
       
