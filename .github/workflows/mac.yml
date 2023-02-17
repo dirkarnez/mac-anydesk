@@ -11,7 +11,7 @@ jobs:
         run: aria2c https://google.com/dl/chrome-remote-desktop/chromeremotedesktophost-47.0.2526.18.dmg && hdiutil attach chromeremotedesktophost-47.0.2526.18.dmg
         
       - name: install
-        run: cd "/Volumes/Chrome Remote Desktop Host 47.0.2526.18" && ls # && sudo cp -rf /Volumes/AnyDesk/AnyDesk.app /Applications
+        run: cd "/Volumes/Chrome Remote Desktop Host 47.0.2526.18" && ls && sudo installer -pkg "Chrome Remote Desktop Host.pkg" -target /
         
 #       - name: run
 #         run: screencapture ~/Desktop/picture.png # sudo /Applications/AnyDesk.app/Contents/MacOS/AnyDesk --get-id
