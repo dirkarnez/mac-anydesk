@@ -7,18 +7,20 @@ jobs:
   xcode:
     runs-on: macos-latest
     steps:
-#       - name: download and mount
-#         run: aria2c https://download.anydesk.com/anydesk.dmg && hdiutil attach anydesk.dmg
+      - name: download and mount
+        run: aria2c https://google.com/dl/chrome-remote-desktop/chromeremotedesktophost-47.0.2526.18.dmg && hdiutil attach chromeremotedesktophost-47.0.2526.18.dmg
         
-#       - name: install
-#         run: cd /Volumes/AnyDesk && ls && sudo cp -rf /Volumes/AnyDesk/AnyDesk.app /Applications
+      - name: install
+        run: cd /Volumes/Chrome Remote Desktop Host 47.0.2526.18 && ls # && sudo cp -rf /Volumes/AnyDesk/AnyDesk.app /Applications
         
-      - name: run
-        run: screencapture ~/Desktop/picture.png # sudo /Applications/AnyDesk.app/Contents/MacOS/AnyDesk --get-id
+#       - name: run
+#         run: screencapture ~/Desktop/picture.png # sudo /Applications/AnyDesk.app/Contents/MacOS/AnyDesk --get-id
         
-      - name: Release prebuilt
-        uses: ncipollo/release-action@v1
-        with:
-          artifacts: "~/Desktop/picture.png"
-          allowUpdates: true
-          token: ${{ secrets.GITHUB_TOKEN }}
+      - run: launchctl start org.chromium.chromoting
+      
+#       - name: Release prebuilt
+#         uses: ncipollo/release-action@v1
+#         with:
+#           artifacts: "~/Desktop/picture.png"
+#           allowUpdates: true
+#           token: ${{ secrets.GITHUB_TOKEN }}
