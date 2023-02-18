@@ -18,7 +18,7 @@ jobs:
 # #       - name: run
 # #         run: screencapture ~/Desktop/picture.png # sudo /Applications/AnyDesk.app/Contents/MacOS/AnyDesk --get-id
         
-      - run: launchctl start org.chromium.chromoting
+      - run: launchctl start org.chromium.chromoting && chrome-remote-desktop-host
       
 #       - name: Release prebuilt
 #         uses: ncipollo/release-action@v1
