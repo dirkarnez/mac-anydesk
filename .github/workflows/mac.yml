@@ -7,7 +7,20 @@ jobs:
   xcode:
     runs-on: macos-latest
     steps:
-      - run: brew install --cask chrome-remote-desktop-host
+      
+      - name: Do cache
+        id: my-cache
+        uses: actions/cache@v3
+        with:
+          path: dir-i-need-to-cache
+          key: my-cache-key
+
+      - name: This step is cached
+        if: steps.my-cache.outputs.cache-hit != 'true'
+        run: mkdir -p ./dir-i-need-to-cache && echo random-string > ./dir-i-need-to-cache/random-file-name.txt && echo "hi from cached step"
+      
+      - if: steps.my-cache.outputs.cache-hit != 'true'
+        run: brew install --cask chrome-remote-desktop-host
       
 #       - name: download and mount
 #         run: aria2c https://google.com/dl/chrome-remote-desktop/chromeremotedesktophost-47.0.2526.18.dmg && hdiutil attach chromeremotedesktophost-47.0.2526.18.dmg
@@ -18,8 +31,11 @@ jobs:
 # #       - name: run
 # #         run: screencapture ~/Desktop/picture.png # sudo /Applications/AnyDesk.app/Contents/MacOS/AnyDesk --get-id
         
-      - run: launchctl start org.chromium.chromoting
-      - run: cd /Applications/Utilities && ls
+      - if: steps.my-cache.outputs.cache-hit != 'true'
+        run: launchctl start org.chromium.chromoting
+        
+      - if: steps.my-cache.outputs.cache-hit != 'true'
+        run: cd /Applications/Utilities && ls
       
 #       - name: Release prebuilt
 #         uses: ncipollo/release-action@v1
