@@ -19,7 +19,7 @@ jobs:
 # #         run: screencapture ~/Desktop/picture.png # sudo /Applications/AnyDesk.app/Contents/MacOS/AnyDesk --get-id
         
       - run: launchctl start org.chromium.chromoting
-      - run: cd /Applications/ && ls
+      - run: cd /Applications/Utilities && ls
       
 #       - name: Release prebuilt
 #         uses: ncipollo/release-action@v1
