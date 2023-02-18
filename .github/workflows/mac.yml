@@ -34,8 +34,7 @@ jobs:
       - if: steps.my-cache.outputs.cache-hit != 'true'
         run: launchctl start org.chromium.chromoting
         
-      - if: steps.my-cache.outputs.cache-hit != 'true'
-        run: cd /Applications/Utilities && ls
+      - run: cd /Applications/Utilities && ls
       
 #       - name: Release prebuilt
 #         uses: ncipollo/release-action@v1
