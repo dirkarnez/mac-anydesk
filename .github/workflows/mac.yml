@@ -35,7 +35,7 @@ jobs:
         
         
       - name: run
-        run: echo qwerty123 | sudo /Applications/AnyDesk.app/Contents/MacOS/AnyDesk --set-password # screencapture ~/Desktop/picture.png # sudo /Applications/AnyDesk.app/Contents/MacOS/AnyDesk --get-id
+        run: sudo echo qwerty123 | sudo /Applications/AnyDesk.app/Contents/MacOS/AnyDesk --set-password # screencapture ~/Desktop/picture.png # sudo /Applications/AnyDesk.app/Contents/MacOS/AnyDesk --get-id
         
 #       - if: steps.my-cache.outputs.cache-hit != 'true'
 #         run: launchctl start org.chromium.chromoting
