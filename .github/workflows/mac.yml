@@ -19,17 +19,16 @@ jobs:
 #         if: steps.my-cache.outputs.cache-hit != 'true'
 #         run: mkdir -p ./dir-i-need-to-cache && echo random-string > ./dir-i-need-to-cache/random-file-name.txt && echo "hi from cached step"
       
-#       - if: steps.my-cache.outputs.cache-hit != 'true'
-#         run: brew install --cask chrome-remote-desktop-host
-      
+      - run: brew install --cask anydesk
+
 #       - name: download and mount
 #         run: aria2c https://google.com/dl/chrome-remote-desktop/chromeremotedesktophost-47.0.2526.18.dmg && hdiutil attach chromeremotedesktophost-47.0.2526.18.dmg
         
 #       - name: install
 #         run: cd "/Volumes/Chrome Remote Desktop Host 47.0.2526.18" && ls && sudo installer -pkg "Chrome Remote Desktop Host.pkg" -target /
         
-      - name: download and mount
-        run: aria2c https://download.anydesk.com/anydesk.dmg && hdiutil attach anydesk.dmg
+#       - name: download and mount
+#         run: aria2c https://download.anydesk.com/anydesk.dmg && hdiutil attach anydesk.dmg
 
       - name: install
         run: cd /Volumes/AnyDesk && ls && sudo cp -rf /Volumes/AnyDesk/AnyDesk.app /Applications
