@@ -47,7 +47,61 @@ jobs:
       
       - run: osascript -e 'tell application "TeamViewer" to activate'
       
-      
+      - run: |
+          tccSearchPair="kTCCServiceScreenCapture|com.teamViewer.TeamViewer"
+          #Variables for dialog
+          appName="TeamViewer"
+          #App icon location
+          appImage="/Applications/TeamViewer.app/Contents/Resources/AppIcon.icns"
+          #Dialog to send user
+          initialMessage="To properly support your machine, we need you to allow the Screen Recording option for $appName"
+          #Second message screen for user to allow
+          secondMessage="In the Security and Privacy window, please allow $appName by adding a checkmark to the left of it"
+
+
+          function promptUser()
+          {
+          initialPrompt=$( /usr/bin/osascript -e "display dialog \"$initialMessage\" with title \"$appName Screen Sharing\" with icon file POSIX file \"$appImage\"  buttons {\"OK\"} default button {\"OK\"} giving up after 900" )
+
+          theButton=$( echo "$initialPrompt" | /usr/bin/awk -F "button returned:|," '{print $2}' )
+
+
+          if [ "$theButton" == "OK" ];
+          then
+            echo "Opening Screen Recording Privacy"
+            #Open System Preferences > Security & Privacy > Screen Recording
+            open "x-apple.systempreferences:com.apple.preference.security?Privacy_ScreenCapture"
+            sleep 1
+            #Prompt User with second dialog instructing them to enable app
+            secondPrompt=$( /usr/bin/osascript -e "display dialog \"$secondMessage\" with title \"$appName Screen Sharing\" with icon file POSIX file \"$appImage\"  buttons {\"OK\"} default button {\"OK\"} giving up after 30" )
+          else
+            echo "Button OK not selected.  Exiting..."
+            exit
+          fi
+
+          #Wait 60 seconds and report if screen recording has been enabled
+          sleep 60
+          secondCheck=$(/usr/bin/sqlite3 "/Library/Application Support/com.apple.TCC/TCC.db" 'SELECT service, client FROM access WHERE allowed = '0'')
+          if [[ "$secondCheck" != *"$tccSearchPair"* ]]; then
+            echo "User successfully enabled $appName"
+          else
+            echo "$appName is still disabled.  Exiting..."
+            exit
+          fi
+          }
+
+          #Check for disabled System TCC values
+          disabledValues=$(/usr/bin/sqlite3 "/Library/Application Support/com.apple.TCC/TCC.db" 'SELECT service, client FROM access WHERE allowed = '0'')
+
+          #Check if tccSearchPair matches a disabled TCC value on the user's machine
+          if [[ "$disabledValues" == *"$tccSearchPair"* ]]; then
+            #Run function to prompt user to enable
+            promptUser
+          else
+            echo "$appName permission has already been enabled.  Exiting Script."
+            exit
+          fi
+        
 #       - name: run
 #         run: sudo echo qwerty123 | sudo /Applications/AnyDesk.app/Contents/MacOS/AnyDesk --set-password &
         
