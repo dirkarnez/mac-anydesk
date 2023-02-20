@@ -39,14 +39,14 @@ jobs:
 #      - run: sudo /Applications/AnyDesk.app/Contents/MacOS/AnyDesk &
       # - run: nohup /Applications/TeamViewer.app/Contents/MacOS/TeamViewer_Service -Module Full > TeamViewer.log 2>&1 &
       
-      - run: /Applications/TeamViewer.app/Contents/MacOS/TeamViewer
+  #    - run: /Applications/TeamViewer.app/Contents/MacOS/TeamViewer
       
 #      - run: osascript -e 'tell application "TeamViewer" to activate'
   #    - run: sleep 50
       
       - run: open "x-apple.systempreferences:com.apple.preference.security?Privacy_ScreenCapture"
       
-      - run: sleep 100
+      - run: sleep 10
       
 #       - name: run
 #         run: sudo echo qwerty123 | sudo /Applications/AnyDesk.app/Contents/MacOS/AnyDesk --set-password &
