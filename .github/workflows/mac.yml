@@ -33,7 +33,9 @@ jobs:
 #       - name: install
 #         run: cd /Volumes/AnyDesk && ls && sudo cp -rf /Volumes/AnyDesk/AnyDesk.app /Applications
         
-      - run: sudo /Applications/AnyDesk.app/Contents/MacOS/AnyDesk --service
+      - run: sudo /Applications/AnyDesk.app/Contents/MacOS/AnyDesk --get-status
+      - run: sudo /Applications/AnyDesk.app/Contents/MacOS/AnyDesk --get-id
+      
       - name: run
         run: sudo echo qwerty123 | sudo /Applications/AnyDesk.app/Contents/MacOS/AnyDesk --set-password # screencapture ~/Desktop/picture.png # sudo /Applications/AnyDesk.app/Contents/MacOS/AnyDesk --get-id
         
