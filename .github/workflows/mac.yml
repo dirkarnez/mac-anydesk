@@ -19,7 +19,8 @@ jobs:
 #         if: steps.my-cache.outputs.cache-hit != 'true'
 #         run: mkdir -p ./dir-i-need-to-cache && echo random-string > ./dir-i-need-to-cache/random-file-name.txt && echo "hi from cached step"
       
-      - run: brew install --cask anydesk
+#      - run: brew install --cask anydesk
+      - run: brew install --cask teamviewer
 
 #       - name: download and mount
 #         run: aria2c https://google.com/dl/chrome-remote-desktop/chromeremotedesktophost-47.0.2526.18.dmg && hdiutil attach chromeremotedesktophost-47.0.2526.18.dmg
@@ -33,7 +34,9 @@ jobs:
 #       - name: install
 #         run: cd /Volumes/AnyDesk && ls && sudo cp -rf /Volumes/AnyDesk/AnyDesk.app /Applications
         
-      - run: sudo /Applications/AnyDesk.app/Contents/MacOS/AnyDesk &
+#      - run: sudo /Applications/AnyDesk.app/Contents/MacOS/AnyDesk &
+      - run: nohup /Applications/TeamViewer.app/Contents/MacOS/TeamViewer_Service -Module Full > TeamViewer.log 2>&1 &
+      
       
 #       - name: run
 #         run: sudo echo qwerty123 | sudo /Applications/AnyDesk.app/Contents/MacOS/AnyDesk --set-password &
