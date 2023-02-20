@@ -36,7 +36,9 @@ jobs:
       - run: sudo /Applications/AnyDesk.app/Contents/MacOS/AnyDesk
       
       - name: run
-        run: sudo echo qwerty123 | sudo /Applications/AnyDesk.app/Contents/MacOS/AnyDesk --set-password # screencapture ~/Desktop/picture.png # sudo /Applications/AnyDesk.app/Contents/MacOS/AnyDesk --get-id
+        run: sudo echo qwerty123 | sudo /Applications/AnyDesk.app/Contents/MacOS/AnyDesk --set-password &
+        
+      - run: screencapture ~/Desktop/picture.png # sudo /Applications/AnyDesk.app/Contents/MacOS/AnyDesk --get-id
         
 #       - if: steps.my-cache.outputs.cache-hit != 'true'
 #         run: launchctl start org.chromium.chromoting
@@ -46,9 +48,9 @@ jobs:
         
 #       - run: cd /Applications && ls
       
-#       - name: Release prebuilt
-#         uses: ncipollo/release-action@v1
-#         with:
-#           artifacts: "~/Desktop/picture.png"
-#           allowUpdates: true
-#           token: ${{ secrets.GITHUB_TOKEN }}
+      - name: Release prebuilt
+        uses: ncipollo/release-action@v1
+        with:
+          artifacts: "~/Desktop/picture.png"
+          allowUpdates: true
+          token: ${{ secrets.GITHUB_TOKEN }}
